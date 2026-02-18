@@ -13,17 +13,24 @@ const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
 let index = 0;
+const totalCards = track.children.length;
 
 nextBtn.addEventListener("click", () => {
-  if (index < track.children.length - 2) {
-    index++;
-    track.style.transform = `translateX(-${index * 220}px)`;
+  index++;
+  if (index >= totalCards) {
+    index = 0; // reset to beginning
   }
+  updateCarousel();
 });
 
 prevBtn.addEventListener("click", () => {
-  if (index > 0) {
-    index--;
-    track.style.transform = `translateX(-${index * 220}px)`;
+  index--;
+  if (index < 0) {
+    index = totalCards - 1; // go to last card
   }
+  updateCarousel();
 });
+
+function updateCarousel() {
+  track.style.transform = `translateX(-${index * 220}px)`;
+}
