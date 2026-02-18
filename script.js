@@ -12,25 +12,26 @@ const track = document.getElementById("carousel-track");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
-let index = 0;
-const totalCards = track.children.length;
+const cardWidth = 220;
 
 nextBtn.addEventListener("click", () => {
-  index++;
-  if (index >= totalCards) {
-    index = 0; // reset to beginning
-  }
-  updateCarousel();
+  track.style.transition = "transform 0.4s ease";
+  track.style.transform = `translateX(-${cardWidth}px)`;
+
+  setTimeout(() => {
+    track.style.transition = "none";
+    track.appendChild(track.firstElementChild);
+    track.style.transform = "translateX(0)";
+  }, 400);
 });
 
 prevBtn.addEventListener("click", () => {
-  index--;
-  if (index < 0) {
-    index = totalCards - 1; // go to last card
-  }
-  updateCarousel();
-});
+  track.style.transition = "none";
+  track.prepend(track.lastElementChild);
+  track.style.transform = `translateX(-${cardWidth}px)`;
 
-function updateCarousel() {
-  track.style.transform = `translateX(-${index * 220}px)`;
-}
+  setTimeout(() => {
+    track.style.transition = "transform 0.4s ease";
+    track.style.transform = "translateX(0)";
+  }, 10);
+});
