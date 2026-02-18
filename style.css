@@ -6,7 +6,7 @@
 }
 
 body {
-  background: #f9f8f6;
+  background: #fda49e;
   color: #111;
 }
 
@@ -87,7 +87,7 @@ body {
   display: flex;
   gap: 20px;
   overflow: hidden;
-  width: 600px;
+  width: fit-content;
 }
 
 .card {
@@ -141,7 +141,7 @@ footer {
   }
 
   .carousel-track {
-    width: 200px;
+    width: 250px;
   }
 
   .hero h1 {
